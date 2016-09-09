@@ -15,7 +15,7 @@ import Foundation
  
     [Visit our github page](https://github.com/MatthewYork/DateTools#time-period-groups) for more information.
  */
-class TimePeriodGroup: Sequence {
+public class TimePeriodGroup: Sequence {
     
     // MARK: - Variables
     
@@ -67,27 +67,27 @@ class TimePeriodGroup: Sequence {
 
     // MARK: - Sequence Protocol
     
-    func makeIterator() -> IndexingIterator<Array<TimePeriodProtocol>> {
+    public func makeIterator() -> IndexingIterator<Array<TimePeriodProtocol>> {
         return periods.makeIterator()
     }
     
-    internal func map<T>(_ transform: (TimePeriodProtocol) throws -> T) rethrows -> [T] {
+    public func map<T>(_ transform: (TimePeriodProtocol) throws -> T) rethrows -> [T] {
         return try periods.map(transform)
     }
     
-    internal func filter(_ isIncluded: (TimePeriodProtocol) throws -> Bool) rethrows -> [TimePeriodProtocol] {
+    public func filter(_ isIncluded: (TimePeriodProtocol) throws -> Bool) rethrows -> [TimePeriodProtocol] {
         return try periods.filter(isIncluded)
     }
     
-    internal func reduce<Result>(_ initialResult: Result, _ nextPartialResult: (Result, TimePeriodProtocol) throws -> Result) rethrows -> Result {
+    public func reduce<Result>(_ initialResult: Result, _ nextPartialResult: (Result, TimePeriodProtocol) throws -> Result) rethrows -> Result {
         return try periods.reduce(initialResult, nextPartialResult)
     }
     
-    func forEach(_ body: (TimePeriodProtocol) throws -> Void) rethrows {
+    public func forEach(_ body: (TimePeriodProtocol) throws -> Void) rethrows {
         return try periods.forEach(body)
     }
     
-    func split(maxSplits: Int, omittingEmptySubsequences: Bool, whereSeparator isSeparator: (TimePeriodProtocol) throws -> Bool) rethrows -> [AnySequence<TimePeriodProtocol>] {
+    public func split(maxSplits: Int, omittingEmptySubsequences: Bool, whereSeparator isSeparator: (TimePeriodProtocol) throws -> Bool) rethrows -> [AnySequence<TimePeriodProtocol>] {
         return try periods.split(maxSplits: maxSplits, omittingEmptySubsequences: omittingEmptySubsequences, whereSeparator: isSeparator)
     }
     
